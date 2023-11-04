@@ -1,0 +1,62 @@
+.goldenSpiral {
+    position: absolute;
+    max-height: 1400px;
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50%, -50%, 0);
+    display: block;
+}
+
+rect {
+    fill: transparent;
+}
+
+path {
+    fill: none;
+    stroke: white;
+    stroke-width: 2;
+    stroke-dasharray: 2, 4;
+    opacity: 0.9;
+    animation: stroke-offset 2s linear infinite;
+}
+
+@keyframes stroke-offset {
+    0% {
+        stroke-dashoffset: 0;
+    }
+
+    100% {
+        stroke-dashoffset: 12;
+    }
+}
+
+circle {
+    fill: rgba(0, 0, 0, 0.05);
+    stroke: none;
+}
+
+text {
+    alignment-baseline: middle;
+    text-anchor: middle;
+    fill: rgba(255, 255, 255, 0.9);
+    font-weight: 100;
+}
+
+@function colorForIteration($iteration, $total_count) {
+    $ratio: $iteration / $total_count;
+    $hue: $ratio * 360;
+    $color: hsl($hue, 30%, 50%);
+    @return $color;
+}
+
+@for $i from 1 through 8 {
+    $color: colorForIteration($i, 8);
+
+    rect:nth-child(#{$i}) {
+        fill: $color;
+    }
+
+    path:nth-child(#{$i}) {
+        stroke: lighten($color, 30%);
+    }
+}

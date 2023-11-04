@@ -1,0 +1,8 @@
+@import url('../../../app/styles/variables/variables.css');
+
+.footer {
+    background-color: var(--header-background);
+    padding: 20px;
+    text-align: center;
+    color: var(--header-text-color);
+}
